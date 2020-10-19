@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+        给定一个二进制数组， 计算其中最大连续1的个数。
+
+        示例 1:
+
+        输入: [1,1,0,1,1,1]
+        输出: 3
+        解释: 开头的两位和最后的三位都是连续1，所以最大连续1的个数是 3.
+        注意：
+
+        输入的数组只包含 0 和1。
+        输入数组的长度是正整数，且不超过 10,000。
+      */
+      /**
+       * @param {number[]} nums
+       * @return {number}
+       */
+      var findMaxConsecutiveOnes = function (nums) {
+
+        let dp = new Array(nums.length); // 创建同样
+        dp[0] = nums[0] // 赋值数组中索引为 0 的数值
+        for (let i = 1, len = nums.length; i < len; i++) {
+          // 判断当前值是否是 0，是的话让 dp 数组同样索引的值为 0，否则就让 dp 前一个当前索引的前一个值 + 1
+          nums[i] === 0 ? (dp[i] = 0) : dp[i] = dp[i - 1] + 1;
+        }
+        // 返回 dp 数组中最大的值
+        return Math.max(...dp);
+      };
+
+      console.log(findMaxConsecutiveOnes([1, 1, 0, 1, 1, 1]));
+      console.log(findMaxConsecutiveOnes([1, 0, 1, 1, 0, 1]));
+    </script>
+  </body>
+</html>
