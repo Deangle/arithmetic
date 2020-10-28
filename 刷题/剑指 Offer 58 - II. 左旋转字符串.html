@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+      字符串的左旋转操作是把字符串前面的若干个字符转移到字符串的尾部。请定义一个函数实现字符串左旋转操作的功能。比如，输入字符串"abcdefg"和数字2，该函数将返回左旋转两位得到的结果"cdefgab"。
+
+      示例 1：
+
+      输入: s = "abcdefg", k = 2
+      输出: "cdefgab"
+      示例 2：
+
+      输入: s = "lrloseumgh", k = 6
+      输出: "umghlrlose"
+             [0,0,0,0,0,0]
+
+      限制：
+
+      1 <= k < s.length <= 10000
+    */
+      /**
+       * @param {string} s
+       * @param {number} n
+       * @return {string}
+       */
+
+      // var reverseLeftWords = function (s, n) {
+      //   return s.slice(n) + s.slice(0, n);
+      // };
+
+      // 双指针
+      /*
+        解题思路：
+        定义一个数组，数组内部初始值为 s.length - n 的个数，即不需要旋转的个数
+        然后定义 i 和 j 指针，j 指针负责扫描整个数组
+        如果当前索引小于 n，表示需要旋转的值，添加到 arr 数组
+        如果索引大于等于 n，表示是不需要旋转的值，直接往数组填充，每次填充 i 都递增
+      */
+      var reverseLeftWords = function (s, n) {
+        const arr = new Array(s.length - n);
+        let i = 0,
+          j = 0;
+        while (j < s.length) {
+          if (j < n) {
+            arr.push(s[j]);
+          } else {
+            arr[i++] = s[j];
+          }
+          j++;
+        }
+        return arr.join('');
+      };
+
+      console.log(reverseLeftWords((s = 'abcdefg'), (k = 2))); // "cdefgab"
+      console.log(reverseLeftWords((s = 'lrloseumgh'), (k = 6))); // "umghlrlose"
+    </script>
+  </body>
+</html>
