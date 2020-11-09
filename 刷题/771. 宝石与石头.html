@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+        给定字符串J 代表石头中宝石的类型，和字符串 S代表你拥有的石头。 S 中每个字符代表了一种你拥有的石头的类型，你想知道你拥有的石头中有多少是宝石。
+
+        J 中的字母不重复，J 和 S中的所有字符都是字母。字母区分大小写，因此"a"和"A"是不同类型的石头。
+
+        示例 1:
+
+        输入: J = "aA", S = "aAAbbbb"
+        输出: 3
+        示例 2:
+
+        输入: J = "z", S = "ZZ"
+        输出: 0
+        注意:
+          S 和 J 最多含有50个字母。
+          J 中的字符不重复。
+        */
+      /**
+       * @param {string} J
+       * @param {string} S
+       * @return {number}
+       */
+      // 暴力解法 (效率zei低)
+      // var numJewelsInStones = function (J, S) {
+      //   let count = 0
+      //   for(let i = 0; i < S.length; i++) {
+      //     for(let j = 0; j < J.length; j++) {
+      //       console.log(S[i] == J[j])
+      //       if(S[i] == J[j]) {
+      //         count++
+      //       }
+      //     }
+      //   }
+      //   return count
+      // };
+      
+      // 哈希
+      // 将宝石类型 J 存入哈希表中，然后循环手中的石头 S，如果手中的石头存在哈希表中，就让count递增，返回 count 值
+      var numJewelsInStones = function (J, S) {
+        const hashList = new Set()
+        let count = 0
+        for(const i of J) {
+          hashList.add(i)
+        }
+        for(const i of S) {
+          if(hashList.has(i)) {
+            count++
+          }
+        }
+        return count
+      }
+      console.log(numJewelsInStones(J = "aA", S = "aAAbbbb")) // 3
+      console.log(numJewelsInStones(J = "z", S = "ZZ")) // 0
+    </script>
+  </body>
+</html>
