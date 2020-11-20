@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+      给你一个整数 n，请你帮忙计算并返回该整数「各位数字之积」与「各位数字之和」的差。
+
+      示例 1：
+
+      输入：n = 234
+      输出：15 
+      解释：
+      各位数之积 = 2 * 3 * 4 = 24 
+      各位数之和 = 2 + 3 + 4 = 9 
+      结果 = 24 - 9 = 15
+      示例 2：
+
+      输入：n = 4421
+      输出：21
+      解释： 
+      各位数之积 = 4 * 4 * 2 * 1 = 32 
+      各位数之和 = 4 + 4 + 2 + 1 = 11 
+      结果 = 32 - 11 = 21
+       
+
+      提示：
+
+      1 <= n <= 10^5
+    */
+      /**
+       * @param {number} n
+       * @return {number}
+       */
+      // 最笨的方法
+      // var subtractProductAndSum = function (n) {
+      //   const nums = String(n).split('')
+      //   let pro = 1,
+      //       sum = 0
+      //   for(let i = 0, len = nums.length; i < len; i++) {
+      //     pro *= Number(num[i])
+      //     sum += Number(num[i])
+      //   }
+      //   return (pro - sum)
+      // };
+
+      // 骚方法
+      // var subtractProductAndSum = function (n) {
+      //   const nums = String(n).split('')
+      //   let pro = eval(nums.join('*'))
+      //   let sum = eval(nums.join('+'))
+      //   return (pro - sum)
+      // };
+
+      // 不转字符串
+      var subtractProductAndSum = function (n) {
+        let pro = 1,
+            sum = 0
+        while(n) {
+          pro *= n % 10
+          sum += n % 10
+          n = Math.floor(n / 10)
+        }
+        return (pro - sum)
+      }
+      console.log(subtractProductAndSum(n = 234)) // 15
+      console.log(subtractProductAndSum(n = 4421)) // 21
+    </script>
+  </body>
+</html>
