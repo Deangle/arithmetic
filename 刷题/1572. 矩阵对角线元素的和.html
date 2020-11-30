@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+      给你一个正方形矩阵 mat，请你返回矩阵对角线元素的和。
+
+      请你返回在矩阵主对角线上的元素和副对角线上且不在主对角线上元素的和。
+      输入：mat = [[1,2,3],
+                  [4,5,6],
+                  [7,8,9]]
+      输出：25
+      解释：对角线的和为：1 + 5 + 9 + 3 + 7 = 25
+      请注意，元素 mat[1][1] = 5 只会被计算一次。
+      示例  2：
+
+      输入：mat = [[1,1,1,1],
+                  [1,1,1,1],
+                  [1,1,1,1],
+                  [1,1,1,1]]
+      输出：8
+      示例 3：
+
+      输入：mat = [[5]]
+      输出：5
+       
+
+      提示：
+
+      n == mat.length == mat[i].length
+      1 <= n <= 100
+      1 <= mat[i][j] <= 100
+    */
+      /**
+       * @param {number[][]} mat
+       * @return {number}
+       */
+      // 从四个角往里相加，如果两个数值的索引同一个，这个值只计算一次
+      var diagonalSum = function (mat) {
+        let a = 0,
+          b = mat.length - 1,
+          num = 0;
+
+        while (a <= b) {
+          if (a === b) {
+            num += mat[a][a];
+          } else {
+            num += mat[a][a] + mat[a][b] + mat[b][a] + mat[b][b];
+          }
+          a++;
+          b--;
+        }
+        return num;
+      };
+
+      console.log(
+        diagonalSum(
+          (mat = [
+            [1, 2, 3],
+            [4, 5, 6],
+            [7, 8, 9],
+          ])
+        )
+      ); // 25
+      console.log(
+        diagonalSum(
+          (mat = [
+            [1, 1, 1, 1],
+            [1, 1, 1, 1],
+            [1, 1, 1, 1],
+            [1, 1, 1, 1],
+          ])
+        )
+      ); // 8
+      console.log(diagonalSum((mat = [[5]]))); // 5
+    </script>
+  </body>
+</html>
