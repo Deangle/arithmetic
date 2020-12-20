@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+      给定一种规律 pattern 和一个字符串 str ，判断 str 是否遵循相同的规律。
+
+      这里的 遵循 指完全匹配，例如， pattern 里的每个字母和字符串 str 中的每个非空单词之间存在着双向连接的对应规律。
+
+      示例1:
+
+      输入: pattern = "abba", str = "dog cat cat dog"
+      输出: true
+      示例 2:
+
+      输入:pattern = "abba", str = "dog cat cat fish"
+      输出: false
+      示例 3:
+
+      输入: pattern = "aaaa", str = "dog cat cat dog"
+      输出: false
+      示例 4:
+
+      输入: pattern = "abba", str = "dog dog dog dog"
+      输出: false
+      说明:
+      你可以假设 pattern 只包含小写字母， str 包含了由单个空格分隔的小写字母。
+    */
+      /**
+       * @param {string} pattern
+       * @param {string} s
+       * @return {boolean}
+       */
+      // indexOf() 方法, 返回 0 或者 1
+      // 示例一: abba 等于 0110, dog cat cat dog 等于 0110
+      // 示例二: abba 等于 0110，dog cat cat fish 等于 0113，末尾 0 不等于 3，返回 false
+      // 示例三: aaaa 等于 0000，dog cat cat dog 等于 0110，索引 1 的位置就不相等，返回 false，结束循环
+      // 实例四: abba 等于 0110，dog dog dog dog 等于 0000，索引 1 的位置就不相等，返回 false，结束循环
+      var wordPattern = function (pattern, s) {
+        const arr = s.split(' ')
+        if(pattern.length !== arr.length) return false
+        for(let i = 0, len = pattern.length; i < len; i++) {
+          if(pattern.indexOf(pattern[i]) !== arr.indexOf(arr[i])) return false
+        }
+        return true
+      };
+
+      console.log(wordPattern(pattern = "abba", str = "dog cat cat dog")) // true
+      console.log(wordPattern(pattern = "abba", str = "dog cat cat fish")) // false
+      console.log(wordPattern(pattern = "aaaa", str = "dog cat cat dog")) // false
+      console.log(wordPattern(pattern = "abba", str = "dog dog dog dog")) // false
+    </script>
+  </body>
+</html>
