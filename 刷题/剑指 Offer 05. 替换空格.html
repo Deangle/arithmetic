@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+        请实现一个函数，把字符串 s 中的每个空格替换成"%20"。
+
+        示例 1：
+
+        输入：s = "We are happy."
+        输出："We%20are%20happy."
+         
+
+        限制：
+
+        0 <= s 的长度 <= 10000
+    */
+      /**
+       * @param {string} s
+       * @return {string}
+       */
+      // 正则替换
+      var replaceSpace = function (s) {
+        return s.replace(/ /g, '%20');
+      };
+
+      // split + join
+      var replaceSpace = function (s) {
+        return s.split(' ').join('%20')
+      }
+
+      // encodeURI
+      var replaceSpace = function (s) {
+        if(s === '%20') return s
+        return encodeURI(s)
+      }
+
+      console.log(replaceSpace((s = 'We are happy.'))); // We%20are%20happy.
+    </script>
+  </body>
+</html>
