@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+      给定 n 个整数，找出平均数最大且长度为 k 的连续子数组，并输出该最大平均数。
+
+      示例：
+
+      输入：[1,12,-5,-6,50,3], k = 4
+      输出：12.75
+      解释：最大平均数 (12-5-6+50)/4 = 51/4 = 12.75
+       
+
+      提示：
+
+      1 <= k <= n <= 30,000。
+      所给数据范围 [-10,000，10,000]。
+    */
+      /**
+       * @param {number[]} nums
+       * @param {number} k
+       * @return {number}
+       */
+      // 滑动窗口
+      var findMaxAverage = function (nums, k) {
+        let sum = 0 // 用来记录每个窗口的和
+        // 第一个窗口
+        for(let i = 0; i < k; i++) {
+          sum += nums[i]
+        }
+
+        let maxSum = sum // 最大窗口存值
+        for(let i = k, len = nums.length; i < len; i++) {
+          sum = sum - nums[i - k] + nums[i]
+          // 比较窗口和大小
+          maxSum = Math.max(maxSum, sum)
+        }
+        return maxSum / k
+      };
+
+      console.log(findMaxAverage([1,12,-5,-6,50,3], k = 4)) // 12.75
+      // console.log(findMaxAverage([5], k = 1)) // 5
+      // console.log(findMaxAverage([3,3,4,3,0], k = 3)) // 3.33333
+    </script>
+  </body>
+</html>
