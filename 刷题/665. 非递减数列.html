@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+      给你一个长度为 n 的整数数组，请你判断在 最多 改变 1 个元素的情况下，该数组能否变成一个非递减数列。
+
+      我们是这样定义一个非递减数列的： 对于数组中所有的 i (0 <= i <= n-2)，总满足 nums[i] <= nums[i + 1]。
+
+      示例 1:
+
+      输入: nums = [4,2,3]
+      输出: true
+      解释: 你可以通过把第一个4变成1来使得它成为一个非递减数列。
+      示例 2:
+
+      输入: nums = [4,2,1]
+      输出: false
+      解释: 你不能在只改变一个元素的情况下将其变为非递减数列。
+       
+
+      说明：
+
+      1 <= n <= 10 ^ 4
+      - 10 ^ 5 <= nums[i] <= 10 ^ 5
+    */ /**
+       * @param {number[]} nums
+       * @return {boolean}
+       */
+      var checkPossibility = function (nums) {
+        let times = 1; // 默认只能替换一次
+        if(nums[0] > nums[1] ) times--
+        for(let i = 1, len = nums.length - 1; i < len; i++) {
+          // 如果当前比后面的数大， times 递减，每递减一次表示需要替换一次
+          if(nums[i] > nums[i + 1]) {
+            times--
+            //如果左边的值大于右边的值，就将右边的值替换成当前值
+            if(nums[i - 1] > nums[i + 1]) {
+              nums[i + 1] = nums[i]
+            } else { // 左边的值小于右边的值，就将左边的值替换成当前值
+              nums[i - 1] = nums[i]
+            }
+          }
+        }
+        // 如果 times 小于 0 ，表示替换多次，返回 false，反之返回 true
+        return times >= 0
+      };
+
+      console.log(checkPossibility(nums = [4,2,3])) // true
+      console.log(checkPossibility(nums = [4,2,1])) // false
+    </script>
+  </body>
+</html>
